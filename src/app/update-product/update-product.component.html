@@ -1,0 +1,307 @@
+<!-- <label><input type="text" name="title" [(ngModel)]="title" placeholder="Enter Product Name"/></label>
+<br>
+<label><input type="text" name="description" [(ngModel)]="description" placeholder="Enter Description"/></label>
+<br>
+<label><input type="text" name="price" [(ngModel)]="price" placeholder="Enter Price"/></label>
+<br/>
+<button (click)="(updateFlag) ?  updateProduct() : addProduct()  ">{{( updateFlag ) ? "Update Product" : "Add Product"}}</button> -->
+
+<div class="container" style="display: grid;">
+    <div style="margin: auto;">
+        <div style="margin-top: 150px;">
+<form (ngSubmit)="updateProduct(productForm)" #productForm="ngForm">
+    <!-- <form> -->
+    <!-- product name -->
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <br />
+      <input
+        type="text"
+        name="productNames"
+        placeholder="Enter Product Name"
+        [(ngModel)] = "product_name"
+        ngModel
+        #productNames="ngModel"
+        required
+      />
+      <div>
+        <small *ngIf="productNames.invalid && productNames.touched"
+          >Product name is required!</small
+        >
+      </div>
+    </div>
+    <!-- product description -->
+    <div class="form-group">
+      <label for="description">Product Description</label>
+      <br />
+      <input
+        type="text"
+        name="pro_description"
+        placeholder="Enter Description"
+        [(ngModel)] = "description"
+        ngModel
+        #pro_description="ngModel"
+        required
+      />
+      <div>
+        <small *ngIf="pro_description.invalid && pro_description.touched"
+          >Description is Required!</small
+        >
+      </div>
+    </div>
+    <!-- base price -->
+    <div class="form-group">
+      <label for="basePrice">Base Price of product</label>
+      <br />
+      <input
+        type="text"
+        name="basePrice1"
+        placeholder="Enter Base Price"
+        [(ngModel)] = "price"
+        ngModel
+        #basePrice1="ngModel"
+        required
+      />
+
+      <div>
+        <small *ngIf="basePrice1.invalid && basePrice1.touched"
+          >Price is Required</small
+        >
+      </div>
+    </div>
+    <!-- saller name -->
+    <div class="form-group">
+      <label for="sallerName">Saller name</label>
+      <br />
+      <input
+        type="text"
+        name="saller_Name"
+        placeholder="Enter Saller Name"
+        [(ngModel)] = "sallerName"
+        ngModel
+        #saller_Name="ngModel"
+        required
+      />
+
+      <div>
+        <small *ngIf="saller_Name.invalid && saller_Name.touched"
+          >Saller Name is required!</small
+        >
+      </div>
+    </div>
+
+    <!-- saller mobile number -->
+    <div class="form-group">
+      <label for="sallerNumber">Saller Mobile Number</label>
+      <br />
+      <input
+        type="text"
+        name="sallerNumber"
+        placeholder="Enter Saller Mobile Number"
+        [(ngModel)] = "mobile"
+        ngModel
+        #sallerNumber="ngModel"
+        required
+      />
+
+      <div>
+        <small *ngIf="sallerNumber.invalid && sallerNumber.touched"
+          >Saller Mobile number is required!</small
+        >
+      </div>
+    </div>
+    <!-- saller email -->
+    <div class="form-group">
+      <label for="description">Saller Email</label>
+      <br />
+      <input
+        type="email"
+        name="email1"
+        placeholder="Enter Saller Email"
+        [(ngModel)] = "sallerEmail"
+        ngModel
+        #email1="ngModel"
+        required
+        email
+      />
+
+      <div>
+        <small *ngIf="email1.invalid && email1.touched">
+          {{
+            email1.invalid
+              ? "Please enter a valid email"
+              : "email is required"
+          }}
+        </small>
+      </div>
+    </div>
+
+    <!-- saller password -->
+    <div class="form-group">
+      <label for="description">Saller Password</label>
+      <br />
+      <input
+        type="text"
+        name="pass"
+        placeholder="Enter Saller Password"
+        [(ngModel)] = "sallerPassword"
+        ngModel
+        #pass="ngModel"
+        required
+        minlength="5"
+        maxlength="10"
+      />
+      <div>
+        <small *ngIf="pass.invalid && pass.touched"
+          >Saller account password is Required , min length required 5 , max
+          length required 10</small
+        >
+      </div>
+    </div>
+
+    <!-- select a category redio -->
+    <!-- <div class="form-group">
+      <label for="category"
+        >Product Category<span>select at least one category</span></label
+      >
+      <br />
+      <label>
+        <input
+          type="radio"
+          name="category"
+          placeholder="Enter category"
+          ngModel
+          #category="ngModel"
+          required
+          value="cloths"
+        />cloths
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="category"
+          placeholder="Enter category"
+          ngModel
+          #category="ngModel"
+          required
+          value="electronics"
+        />electronics
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="category"
+          placeholder="Enter category"
+          ngModel
+          #category="ngModel"
+          required
+          value="home_applience"
+        />home applience
+      </label>
+      <div>
+        <small *ngIf="category.invalid && category.touched"
+          >Category is Required!</small
+        >
+      </div>
+    </div> -->
+    <div class="form-group">
+      <label for="exampleInputPassword1">Price base Price of product</label>
+      <br />
+      <input
+        type="text"
+        name="basePrice2"
+        placeholder="Enter Base Price"
+        [(ngModel)] = "price"
+        ngModel
+        #basePrice2="ngModel"
+        required
+      />
+
+      <div>
+        <small *ngIf="basePrice2.invalid && basePrice2.touched"
+          >Price is Required</small
+        >
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="country">Country</label>
+      <select
+        id="country"
+        name="countryName"
+        ngModel
+        #countryName="ngModel"
+        required
+      >
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+        <option value="india">India</option>
+        <option value="uk">UK</option>
+      </select>
+
+      <div>
+        <small *ngIf="countryName.invalid && countryName.touched"
+          >country Name is Required</small
+        >
+      </div>
+    </div> -->
+
+    <!-- <div class="form-group">
+      <label for="exampleInputCountryPrice">country Price</label>
+      <br />
+      <input
+        type="text"
+        name="countryPrice"
+        placeholder="Enter Country price"
+        ngModel
+        #countryPrice="ngModel"
+        required
+      />
+
+      <div>
+        <small *ngIf="countryPrice.invalid && countryPrice.touched"
+          >country Price is Required</small
+        >
+      </div>
+    </div> -->
+    <!-- product keywords -->
+    <div class="form-group">
+      <label for="description">product keywords</label>
+      <br />
+      <textarea
+        name="keyword"
+        ngModel
+        #keyword="ngModel"
+        [(ngModel)] = "keywords"
+        cols="30"
+        rows="10"
+        minlength="10"
+        required
+        placeholder="Enter product search keyword here with comma saprated"
+      ></textarea>
+      <div>
+        <small *ngIf="keyword.invalid && keyword.touched"
+          >Product keyword is Required</small
+        >
+      </div>
+    </div>
+    <!-- dynamic country forms -->
+    <span>Click here to add Country with price<button type="button" (click)="addCountryForm()">add Address</button></span>
+    <div *ngFor="let address of countryArray; let i = index" class="border border-primary p-3 m-2 rounded">
+      <app-country-form
+        [data]="address"
+        [group]="'address' + i"
+      ></app-country-form>
+      <button type="button" (click)="removeCountryForm(i)">
+        remove Address
+      </button>
+    </div>
+    <button class="btn btn-primary" type="submit">Update Product</button>
+
+  </form>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,26 @@
+
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+  <input type="text" name="firstName" ngModel />
+  <input type="text" name="lastName" ngModel />
+  <input type="submit" value="submit" />
+</form>
+<p>Start editing to see some magic happen :)</p>
+<input type="button" (click)="deleteProduct()" value="delete selected product">
+<table border>
+  <tr>
+    <th>
+      <input
+        type="checkbox"
+        [(ngModel)]="allChecked"
+        (change)="flipAllCheckbox($event)"
+      />
+    </th>
+    <th>first name</th>
+    <th>last name</th>
+  </tr>
+  <tr *ngFor="let ele of product">
+    <td><input type="checkbox" [checked]="ele.checked" [(ngModel)]="ele.checked"/></td>
+    <td>{{ ele.firstName }}</td>
+    <td>{{ ele.lastName }}</td>
+  </tr>
+</table>

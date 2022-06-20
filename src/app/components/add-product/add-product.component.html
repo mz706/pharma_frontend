@@ -1,0 +1,399 @@
+<div class="container" style="display: grid">
+  <div style="margin: auto">
+    <div style="margin-top: 150px">
+
+        <!-- <form> -->
+          <div class="container">
+            <div class="text-center mt-5">
+              <h1>Add Product Form</h1>
+            </div>
+          
+            <div class="row">
+              <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                  <div class="card-body bg-light">
+                    <div class="container">
+                      <form (ngSubmit)="addProduct(productForm)" #productForm="ngForm">
+                        <div class="controls">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="form_name">Product name *</label>
+                                <input
+                                  type="text"
+                                  name="productName1"
+                                  class="form-control"
+                                  placeholder="Please enter product name *"
+                                  required="required"
+                                  [(ngModel)]="productName"
+                                  #productName1="ngModel"
+                                  required
+                                  pattern="^[a-zA-Z^ ]+$"
+                                  minlength="15"
+                                />
+                                <div
+                                  *ngIf="
+                                    !productName1?.valid &&
+                                    (productName1?.dirty || productName1?.touched)
+                                  "
+                                >
+                                  <div  *ngIf="productName1.errors?.['required']">
+                                    Prooduct Name is required
+                                  </div>
+                                  <div
+                                    *ngIf="productName1.touched && productName1.errors?.['minlength']"
+                                  >
+                                    Product Name Minimum Length should be 15
+                                  </div>
+                                  <div *ngIf="productName1.errors?.['pattern']">
+                                    Only characters are allowed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="form_lastname">Base Price *</label>
+                                <input
+                                  type="text"
+                                  name="basePrice"
+                                  class="form-control"
+                                  placeholder="Enter Base Price"
+                                  ngModel
+                                  #basePrice="ngModel"
+                                  required
+                                  pattern="^[0-9]+$"
+                                />
+                                <div
+                                  *ngIf="
+                                    !basePrice?.valid &&
+                                    (basePrice?.dirty || basePrice?.touched)
+                                  "
+                                  class="error"
+                                >
+                                  <div *ngIf="basePrice.errors?.['required']">
+                                    Prooduct Name is required
+                                  </div>
+                                  <div
+                                    *ngIf="basePrice.touched && productName1.errors?.['minlength']"
+                                  >
+                                    Product Name Minimum Length should be 15
+                                  </div>
+                                  <div *ngIf="basePrice.errors?.['pattern']">
+                                    Only number are allowed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="sallerName">Saller Name *</label>
+                                <input
+                                  type="text"
+                                  name="sallerName"
+                                  class="form-control"
+                                  placeholder="Enter Saller Name"
+                                  ngModel
+                                  #sallerName="ngModel"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="sallerNumber">Saller Mobile Number *</label>
+                                <input
+                                  type="text"
+                                  name="sallerNumber"
+                                  class="form-control"
+                                  placeholder="Enter Saller Mobile Number"
+                                  ngModel
+                                  #sallerNumber="ngModel"
+                                  required
+                                  maxlength="12"
+                                  minlength="10"
+                                  (input)="numbersOnlyValidator($event)"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="saller_email">Saller Email *</label>
+                                <input
+                                  type="email"
+                                  name="email1"
+                                  class="form-control"
+                                  placeholder="Enter Saller Email"
+                                  ngModel
+                                  #email1="ngModel"
+                                  required
+                                  email
+                                />
+                                <div *ngIf="email1.invalid && email1.touched && (email1?.dirty || email1?.touched)" class="error alert">
+                                  Email is invalid
+                                  </div>
+                                <div *ngIf="email1.errors?.['required']">
+                                  Email is required
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="saller_password">Saller Password *</label>
+                                <input
+                                  type="password"
+                                  name="pass"
+                                  class="form-control"
+                                  placeholder="Enter Saller Password"
+                                  ngModel
+                                  #pass="ngModel"
+                                  required
+                                  minlength="5"
+                                  maxlength="10"
+                                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                />
+                                <div>
+                                  <small *ngIf="pass.invalid && pass.touched && pass.errors?.['required']"
+                                    >Saller account password is Required , min length required 5 , max
+                                    length required 10</small>
+                                    <small *ngIf="pass.invalid && pass.touched && pass.errors?.['minlength']"
+                                    > minimum length required 8</small>
+                                    <small *ngIf="pass.invalid && pass.touched && pass.errors?.['maxlength']"
+                                    > maximum length required 12</small>
+                                    <small *ngIf="pass.invalid && pass.touched && pass.errors?.['pattern']"
+                                    >Password should have at least one small letter , one capital letter , one number , one special character </small>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="form_email">Product Category*</label>
+                                <br />
+                                <input
+                                  type="radio"
+                                  name="category"
+                                  placeholder="Enter category"
+                                  ngModel
+                                  #category="ngModel"
+                                  required
+                                  value="cloths"
+                                />
+                                cloths
+          
+                                <input
+                                  type="radio"
+                                  name="category"
+                                  placeholder="Enter category"
+                                  ngModel
+                                  #category="ngModel"
+                                  required
+                                  value="electronics"
+                                />
+                                electronics
+          
+                                <input
+                                  type="radio"
+                                  name="category"
+                                  placeholder="Enter category"
+                                  ngModel
+                                  #category="ngModel"
+                                  required
+                                  value="home_applience"
+                                />
+                                home applience
+                                <div>
+                                  <small *ngIf="category.invalid && category.touched"
+                                    >Category is Required!</small
+                                  >
+                                </div>
+             
+                              </div>
+                            </div>
+                          </div>
+          
+          
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="form_message">Product Description *</label>
+                                <textarea
+                                  name="description"
+                                  class="form-control"
+                                  placeholder="Enter Description"
+                                  ngModel
+                                  #description="ngModel"
+                                  required
+                                  pattern="^[a-zA-Z ]+$"
+                                  minlength="10"
+                                  maxlength="200"
+                                  rows="4"
+                                ></textarea>
+                                <div
+                                  *ngIf="
+                                    !description?.valid &&
+                                    (description?.dirty || description?.touched)
+                                  "
+                                  class="error"
+                                >
+                                  <div *ngIf="description.errors?.['required']">
+                                    Prooduct description is required
+                                  </div>
+                                  <div
+                                    *ngIf="description.touched && description.errors?.['minlength']"
+                                  >
+                                    Description Minimum Length should be 10
+                                  </div>
+                                  <div *ngIf="description.errors?.['pattern']">
+                                    Only characters are allowed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="product_keyword">Product Keywords *</label>
+                                <textarea
+                                  name="keywords"
+                                  class="form-control"
+                                  ngModel
+                                  #keywords="ngModel"
+                                  rows="4"
+                                  minlength="10"
+                                  required
+                                  placeholder="Enter product search keyword here with comma saprated"
+                                ></textarea>
+                                <div
+                                  *ngIf="
+                                    !keywords?.valid &&
+                                    (keywords?.dirty || keywords?.touched)
+                                  "
+                                  class="error"
+                                >
+                                  <div *ngIf="keywords.errors?.['required']">
+                                    Prooduct Keyword is required
+                                  </div>
+                                  <div
+                                    *ngIf="keywords.touched && keywords.errors?.['minlength']"
+                                  >
+                                    Product Keyword Minimum Length should be 10
+                                  </div>
+                                  <div *ngIf="description.errors?.['pattern']">
+                                    Only characters are allowed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="form_email">Country Name *</label>
+                                <input
+                                  type="text"
+                                  name="countryName1"
+                                  class="form-control"
+                                  placeholder="Enter country Name"
+                                  [(ngModel)]="countryName"
+                                  #countryName1="ngModel"
+                                  required
+                                  pattern="^[a-zA-Z^ ]+$"
+                                />
+                                <div>
+                                  <small *ngIf="countryName1.invalid && countryName1.touched"
+                                    >country name is required!</small
+                                  >
+                                  <small *ngIf="countryName1.invalid && countryName1.errors?.['pattern']"
+                                    >Country price should be numeric value!</small>
+                                  
+                                </div>          
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="form_need">Country Price *</label>
+                                <input
+                                  type="text"
+                                  name="countryPrice1"
+                                  class="form-control"
+                                  placeholder="Enter country Price"
+                                  [(ngModel)]="countryPrice"
+                                  #countryPrice1="ngModel"
+                                  pattern="^[0-9]+$" 
+                                  required
+                                />
+                                <div>
+                                  <small *ngIf="countryPrice1.invalid && countryPrice1.errors?.['pattern']"
+                                    >Country price should be numeric value!</small>
+                                    <small *ngIf=" countryPrice1.touched && countryPrice1.invalid "
+                                    >Country price is required!</small>
+                                </div>          
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <input
+                                type="button"
+                                class="btn btn-success btn-send pt-2 btn-block"
+                                value="Add Country & Price"
+                                (click)="addCountry(productForm)"
+                              />
+                            </div>
+                            <div class="col-md-12 mt-2">
+                              <input
+                                type="submit"
+                                class="btn btn-success btn-send pt-2 btn-block"
+                                value="Add Product"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.8 -->
+              </div>
+              <!-- /.row-->
+            </div>
+          </div>
+          
+      <div *ngIf="country.length != 0" class="mt-5" >
+        <table class="table">
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                [(ngModel)]="allChecked"
+                (change)="flipAllCheckbox($event)"
+              />
+            </th>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let ele of country">
+            <td><input type="checkbox" [checked]="ele.checked" [(ngModel)]="ele.checked"/></td>
+            <td>{{ ele.name }}</td>
+            <td>{{ ele.price }}</td>
+          </tr>
+        </table>
+        <button class="btn btn-primary mt-5" type="button" (click)="deleteProduct()">Remove Country</button>    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <label><input type="text" name="title" [(ngModel)]="title" placeholder="Enter Product Name"/></label>
+<br>
+<label><input type="text" name="description" [(ngModel)]="description" placeholder="Enter Description"/></label>
+<br>
+<label><input type="text" name="price" [(ngModel)]="price" placeholder="Enter Price"/></label>
+<br/>
+<button (click)="(updateFlag) ?  updateProduct() : addProduct()  ">{{( updateFlag ) ? "Update Product" : "Add Product"}}</button> -->
+<!-- {{countryName}}
+{{countryPrice}} -->
